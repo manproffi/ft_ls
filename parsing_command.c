@@ -50,10 +50,10 @@ void	parsing_command(int argc, char const *argv[], t_info * info)
 		}
 		else if (info->flag == 0)
 		{
-			// printf("нет флагов и есть аргументы для ls\n");
-			list = reading(info, argv[i]);
-			pr_list(list);
-			printf("+++++++++++++++\n");
+			printf("нет флагов и есть аргументы для ls\n");
+			// list = reading(info, argv[i]);
+			// pr_list(list);
+			// printf("+++++++++++++++\n");
 			// working_with_arguments(list, )
 			
 		}

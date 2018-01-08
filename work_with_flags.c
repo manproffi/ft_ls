@@ -45,48 +45,6 @@
 	
 // }
 
-char		get_filetype(mode_t m)
-{
-	// char type;
-
-	// if ((mode & 0160000) == 0160000)
-	// 	type = 'w';
-	// else if ((mode & 0140000) == 0140000)
-	// 	type = 's';
-	// else if ((mode & 0120000) == 0120000)
-	// 	type = 'l';
-	// else if ((mode & 0100000) == 0100000)
-	// 	type = '-';
-	// else if ((mode & 0060000) == 0060000)
-	// 	type = 'b';
-	// else if ((mode & 0040000) == 0040000)
-	// 	type = 'd';
-	// else if ((mode & 0020000) == 0020000)
-	// 	type = 'c';
-	// else if ((mode & 0010000) == 0010000)
-	// 	type = 'p';
-	// else
-	// 	type = 'x';
-	// return (type);
-
-
-
-		if (S_ISBLK(m)) 
-			return 'a';
-		if (S_ISCHR(m)) 
-			return 'a';
-		if (S_ISDIR(m))  
-			return 'd';
-		if (S_ISFIFO(m)) 
-			return 'a';
-		if (S_ISREG(m)) 
-			return 'a';
-		if (S_ISLNK(m)) 
-			return 'a';
-		if (S_ISSOCK(m)) 
-			return 'a';
-		return 'a';
-}
 
 
 int		check_if_dir(char * name)
@@ -104,7 +62,7 @@ int		check_if_dir(char * name)
 
 
 
-void	recurtion(char const * name, t_info * old_info)
+void	recursion(char const * name, t_info * old_info)
 {
 	t_list 		*list;
 	t_list		**mass;
@@ -116,17 +74,31 @@ void	recurtion(char const * name, t_info * old_info)
 	info.len_mass = old_info->len_mass;
 	info.w = old_info->w;
 	info.h = old_info->h;
+	info.flag = old_info->flag;
 
-
+	// printf("total: \n");
 	// printf("recursin\n");
 	list = reading(&info, name);
-	mass = sort_lexicographical(list, &info);
+	new_name = ft_strjoin(name, "/");
+	// printf("%p\n", new_name);
+	mass = sort_lexicographical(list, &info, new_name);
+
 	// printf("%s:\n", name);
-	pr_mass(info.len_mass, mass, &info);
+	// struct stat  p_stat;
+	// stat(new_name, &p_stat);
+	// blkcnt_t a;
+	// a = p_stat.st_blocks;
+	// printf("a: %lld\n", a);
+	// printf(RED"total: %s %lld\n"RESET, name, p_stat.st_blocks );
+	// printf("%d\n", info.flag & 1 );
+	if (info.flag & 1)
+		flag_l(info.len_mass, mass, new_name);
+	else
+		pr_mass(info.len_mass, mass, &info);
 	// pr_list(list);
 	// printf("%d\n", info->max_len);
 	// printf("%s\n", name);
-	new_name = ft_strjoin(name, "/");
+	
 	i = -1;
 	while(++i < info.len_mass)
 	{
@@ -134,12 +106,13 @@ void	recurtion(char const * name, t_info * old_info)
 		{
 			char * new_name2 = ft_strjoin(new_name, mass[i]->content);
 			printf("\n%s:\n", new_name2);
-			recurtion(new_name2, &info);
+			recursion(new_name2, &info);
 			ft_strdel(&new_name2);
 		}
 	}
 		
 	del_list_list(&list);
+	ft_strdel(&new_name);
 	free(mass);
 	// printf("asdfasdfasd\n");
 
@@ -169,7 +142,7 @@ void	work_with_flags(int argc, int i, t_info * info, char const *argv[])
 			printf("%s:\n", argv[i]);
 		if (((info->flag) & 2) != 0)
 		{
-			recurtion(argv[i], info);
+			recursion(argv[i], info);
 		}
 		++i;
 		if (argc - i)
