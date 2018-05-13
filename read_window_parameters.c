@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/ioctl.h>
 #include "head_ls.h"
 
 void	read_window_parameters(t_info * info)
