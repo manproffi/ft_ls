@@ -43,8 +43,9 @@ void		work_with_parameters(int c_arg, int ac, char **av, t_info *info)
 	marker_for_address = ac - c_arg;
 	while (--ac >= c_arg)
 	{
+		//printf("%d\n", marker_for_address);
 		list = reading(info, av[ac], &flag_file);
-		if (marker_for_address > 0 && !flag_file)
+		if (marker_for_address > 1 && !flag_file)
 			printf("%s:\n", av[ac]);
 		else
 			flag_file = 0;
