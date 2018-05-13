@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pr_decimal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2017/02/20 19:20:47 by sprotsen          #+#    #+#             */
+/*   Updated: 2017/02/20 19:32:05 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head_ls.h"
+#include "printhead.h"
 
-int 	main(int argc, char const *argv[])
+void	pr_decimal(intmax_t n, int i, char *row, int *fl)
 {
-	t_info		info;
+	intmax_t	num;
+	int			k;
 
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	printf("%d\n", info.h_window);
-	printf("%d\n", info.w_window);
-
-	if (argc == 1)
+	num = n / 10;
+	k = n % 10;
+	i++;
+	if (n < 0)
 	{
-		printf("%s\n", "invoke ft_ls without parameters");
+		fl[1] = 2;
+		fl[0] = 0;
+		fl[2] = 0;
 	}
-	else
+	if (n > -10 && n < 10)
 	{
-
+		k < 0 ? k = -k : 0;
+		row[i] = (k + '0');
+		return ;
 	}
-	return 0;
+	pr_decimal(num, i, row, fl);
+	k < 0 ? k = -k : 0;
+	row[i] = (k + '0');
 }

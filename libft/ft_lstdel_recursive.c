@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdel_recursive.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2017/04/08 14:34:56 by sprotsen          #+#    #+#             */
+/*   Updated: 2017/04/08 14:37:12 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head_ls.h"
+#include "libft.h"
 
-int 	main(int argc, char const *argv[])
+void	ft_lstdel_recursive(t_list **list)
 {
-	t_info		info;
-
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	printf("%d\n", info.h_window);
-	printf("%d\n", info.w_window);
-
-	if (argc == 1)
+	if (*list)
 	{
-		printf("%s\n", "invoke ft_ls without parameters");
+		ft_lstdel_recursive(&(*list)->next);
+		free((*list)->content);
+		free(*list);
+		(*list)->content = NULL;
+		(*list) = NULL;
 	}
-	else
-	{
-
-	}
-	return 0;
 }

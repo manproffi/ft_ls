@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pr_space_null_row.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2017/02/22 20:49:10 by sprotsen          #+#    #+#             */
+/*   Updated: 2017/02/22 20:49:11 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head_ls.h"
+#include "printhead.h"
 
-int 	main(int argc, char const *argv[])
+void	pr_space_null(int pr, size_t *res, char c)
 {
-	t_info		info;
-
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	printf("%d\n", info.h_window);
-	printf("%d\n", info.w_window);
-
-	if (argc == 1)
+	while (pr-- > 0)
 	{
-		printf("%s\n", "invoke ft_ls without parameters");
+		*res += 1;
+		write(1, &c, 1);
 	}
-	else
-	{
+}
 
+void	pr_row(int len, size_t *res, char *str)
+{
+	while (len-- > 0)
+	{
+		*res += 1;
+		ft_putchar_printf(str[len]);
 	}
-	return 0;
 }

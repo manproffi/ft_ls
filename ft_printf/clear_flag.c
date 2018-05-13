@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clear_flag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2017/02/19 18:40:15 by sprotsen          #+#    #+#             */
+/*   Updated: 2017/02/19 20:26:28 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head_ls.h"
+#include "printhead.h"
 
-int 	main(int argc, char const *argv[])
+void	clear_flag(int *flag)
 {
-	t_info		info;
+	int		i;
 
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	printf("%d\n", info.h_window);
-	printf("%d\n", info.w_window);
-
-	if (argc == 1)
+	i = -1;
+	while (++i < 8)
 	{
-		printf("%s\n", "invoke ft_ls without parameters");
+		flag[i] = 0;
 	}
-	else
-	{
-
-	}
-	return 0;
 }

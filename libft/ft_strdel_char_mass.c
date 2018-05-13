@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdel_char_mass.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2017/04/08 21:00:34 by sprotsen          #+#    #+#             */
+/*   Updated: 2017/04/08 21:00:36 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head_ls.h"
+#include "libft.h"
 
-int 	main(int argc, char const *argv[])
+void	ft_strdel_char_mass(char **mass)
 {
-	t_info		info;
+	int		i;
 
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	printf("%d\n", info.h_window);
-	printf("%d\n", info.w_window);
-
-	if (argc == 1)
+	i = 0;
+	while (mass[i] != '\0')
 	{
-		printf("%s\n", "invoke ft_ls without parameters");
+		ft_strdel(&mass[i]);
+		i++;
 	}
-	else
-	{
-
-	}
-	return 0;
+	free(mass);
 }
