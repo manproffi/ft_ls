@@ -12,8 +12,6 @@
 
 #include "head_ls.h"
 
-#include <unistd.h>
-
 t_list	*	reading(t_info * info, char const * name, int *flag)
 {
 	DIR				*p_dir;
