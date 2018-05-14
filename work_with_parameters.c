@@ -18,11 +18,8 @@ void	next_stage(t_list *list, t_info * info, char * name)
 
 	tmp = sort(list, info);
 	print_column(info, tmp, ft_lstsize(list));
-	if ((info->flags & 2) == 1)
-	{
-		resursion(info, tmp, ft_lstsize(list), name);
-		
-	}
+	if ((info->flags & 2) == 2)
+		resursion(info, tmp, ft_lstsize(list), ft_strjoin(name, "/"));
 	del_list_list(&list);
 	//TODO delete mass tmp
 }
@@ -34,7 +31,7 @@ void		work_with_parameters(int c_arg, int ac, char **av, t_info *info)
 	int		flag_file;
 
 	flag_file = 0;
-	if (ac == c_arg)
+	if (ac == c_arg && info->flags == 0)
 	{
 		list = reading(info, ".", &flag_file);
 		next_stage(list, info, NULL);
