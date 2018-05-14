@@ -12,18 +12,17 @@
 
 #include "head_ls.h"
 
-void	next_stage(t_list *list, t_info * info)
+void	next_stage(t_list *list, t_info * info, char * name)
 {
 	t_list ** tmp;
 
 	tmp = sort(list, info);
+	print_column(info, tmp, ft_lstsize(list));
 	if ((info->flags & 2) == 1)
 	{
-		//TODO recursion
-		;
+		resursion(info, tmp, ft_lstsize(list), name);
+		
 	}
-	else
-		print_column(info, tmp, ft_lstsize(list));
 	del_list_list(&list);
 	//TODO delete mass tmp
 }
@@ -38,7 +37,7 @@ void		work_with_parameters(int c_arg, int ac, char **av, t_info *info)
 	if (ac == c_arg)
 	{
 		list = reading(info, ".", &flag_file);
-		next_stage(list, info);
+		next_stage(list, info, NULL);
 	}
 	marker_for_address = ac - c_arg;
 	while (--ac >= c_arg)
@@ -49,7 +48,7 @@ void		work_with_parameters(int c_arg, int ac, char **av, t_info *info)
 			printf("%s:\n", av[ac]);
 		else
 			flag_file = 0;
-		next_stage(list, info);
+		next_stage(list, info, av[ac]);
 		ac != c_arg ? printf("\n"): 0 ;
 	}
 }

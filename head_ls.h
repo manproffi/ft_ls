@@ -14,11 +14,12 @@
 # define HEAD_LS_H
 
 # include <stdio.h>
-# include <sys/ttycom.h>
+//# include <sys/ttycom.h>
 # include <sys/ioctl.h>
 # include <dirent.h>
 # include "libft/libft.h"
-# include "ft_printf/printhead.h"
+// # include "ft_printf/printhead.h"
+
 
 typedef struct 		s_info
 {
@@ -37,6 +38,9 @@ void		print_column(t_info * info, t_list ** mass, int size);
 void		work_with_parameters(int c_arg, int ac, char **av, t_info *info);
 void	pr_list(t_list * lst);
 t_list	**	sort(t_list * list, t_info * info);
+
+
+void	resursion(t_info *info, t_list **mass, int size, char *name);
 
 
 #endif
