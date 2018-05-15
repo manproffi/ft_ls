@@ -33,7 +33,51 @@ void	insertSort(int size, t_list **mass)
 	}
 }
 
-t_list	**	sort(t_list * list, t_info * info)
+int compere(char * a , char * b)
+{
+	struct stat  aa;
+	struct stat  bb;
+	lstat(a, &aa);
+	lstat(b, &bb);
+	int res;
+
+
+	if (aa.st_mtimespec.tv_sec == bb.st_mtimespec.tv_sec)
+		res = ft_strcmp(a, b);
+	else if (aa.st_mtimespec.tv_sec < bb.st_mtimespec.tv_sec)
+		res = 1;
+	else
+		res = 0;
+	ft_strdel(&a);
+	ft_strdel(&b);
+	return res;
+
+	// aa.st_mtimespec.tv_sec
+	// bb.st_mtimespec.tv_sec
+}
+
+static void	sort_by_time_modified(int size, t_list **mass, const char * name) 
+{
+	int i;
+	int j;
+	t_list * tmp;
+
+	i = 1;
+	while (i < size)
+	{
+		tmp = mass[i];
+		j = i - 1;
+		while (j >= 0 && compere(ft_strjoin(name, mass[j]->content), ft_strjoin(name, tmp->content)) > 0)
+		{
+			mass[j + 1] = mass[j];
+			--j;
+		}
+		mass[j + 1] = tmp;
+		++i;
+	}
+}
+
+t_list	**	sort(t_list * list, t_info * info, char * name)
 {
 	int			i;
 	int 		len;
@@ -47,13 +91,11 @@ t_list	**	sort(t_list * list, t_info * info)
 		mass_for_sort[++i] = list;
 		list = list->next;
 	}
-	if ((info->flags & 8) == 0)
-		insertSort(len, mass_for_sort);
+	if ((info->flags & 8) == 8)
+		sort_by_time_modified(len, mass_for_sort, name);
 	else
-	{
-		//TODO insert sort by time and may any sort 
-		;
-	}
+		insertSort(len, mass_for_sort);
+
 
 
 	// printf("++++++++++TEST size %d\n", len);

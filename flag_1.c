@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   flag_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2018/05/15 21:09:49 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/15 21:09:50 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head_ls.h"
 
-void	pr_list(t_list * lst)
+void	flag_1(t_list **mass, int size)
 {
-	while(lst)
+	int		i;
+
+	i = -1;
+	while (++i < size)
 	{
-		printf("%-s\t", lst->content);
-		lst = lst->next;
+		printf("%s\n", mass[i]->content);
 	}
-	printf("\n");
-}
-
-int 	main(int argc, char *argv[])
-{
-	t_info		info;
-	int			count_arg;
-	// t_list		*list = NULL;
-
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	count_arg = parsing_command(argc, argv, &info);
-	work_with_parameters(count_arg, argc, argv, &info);
-
-	// del_list_list(&list);
-	// sleep(42);
-	return 0;
 }

@@ -24,7 +24,10 @@ LIB_ALL = -L$(LIB_DIR) -l$(LIB_NAME) -L$(LIB_DIR2) -l$(LIB_NAME2)
 
 SRC = main.c read_window_parameters.c parsing_command.c \
 		reading.c delete.c print_column.c work_with_parameters.c sort.c \
-		recursion.c get_filetype.c
+		recursion.c get_filetype.c choise_print_function.c \
+		flag_1.c \
+		flag_i.c \
+		flag_l.c
  
 OBJ = $(SRC:.c=.o)
 

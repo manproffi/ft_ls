@@ -53,3 +53,4 @@ void	print_column(t_info *info, t_list **mass, int size)
 		ft_printf("\n");
 	}
 }
+

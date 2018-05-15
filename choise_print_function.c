@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   choise_print_function.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:35 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:38 by sprotsen         ###   ########.fr       */
+/*   Created: 2018/05/15 20:53:08 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/15 20:53:13 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head_ls.h"
 
-void	pr_list(t_list * lst)
+void choise_print_fun(t_info *info, t_list **mass, int size, char *name)
 {
-	while(lst)
-	{
-		printf("%-s\t", lst->content);
-		lst = lst->next;
-	}
-	printf("\n");
+	if ((info->flags & 1) == 1)
+		flag_l(size, mass, name);
+	else if ((info->flags & 16) == 16)
+		flag_1(mass, size);
+	else if ((info->flags & 32) == 32)
+		printf("%s\n", "ggggg");
+	else if ((info->flags & 64) == 64)
+		flag_i(mass, size, name);
+	else
+		print_column(info, mass, size);
+	ft_strdel(&name);
 }
 
-int 	main(int argc, char *argv[])
-{
-	t_info		info;
-	int			count_arg;
-	// t_list		*list = NULL;
-
-	info.flags = 0;
-	read_window_parameters(&info);
-
-	count_arg = parsing_command(argc, argv, &info);
-	work_with_parameters(count_arg, argc, argv, &info);
-
-	// del_list_list(&list);
-	// sleep(42);
-	return 0;
-}

@@ -15,13 +15,16 @@
 void	next_stage(t_list *list, t_info * info, char * name)
 {
 	t_list ** tmp;
+	char 	*str_name;
 
-	tmp = sort(list, info);
-	print_column(info, tmp, ft_lstsize(list));
+	str_name = ft_strjoin(name, "/");
+	tmp = sort(list, info, str_name);
+	choise_print_fun(info, tmp, ft_lstsize(list), str_name);
 	if ((info->flags & 2) == 2)
 		resursion(info, tmp, ft_lstsize(list), ft_strjoin(name, "/"));
 	del_list_list(&list);
-	//TODO delete mass tmp
+	if (tmp)
+		free(tmp);
 }
 
 void		work_with_parameters(int c_arg, int ac, char **av, t_info *info)
