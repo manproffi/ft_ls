@@ -14,11 +14,25 @@
 
 void	get_strmode(mode_t mode, char * buf)
 {
-	const char chars[] = "rwxrwxrwx";
+	const char chars[] = "rwxrwxrwx ";
 	for (size_t i = 0; i < 9; i++) {
 		buf[i] = (mode & (1 << (8-i))) ? chars[i] : '-';
 	}
+	if (mode & S_ISUID)
+		buf[2] = (mode & S_IXUSR) ? 's' : 'S';
+	if (mode & S_ISGID)
+		buf[5] = (mode & S_IXGRP) ? 's' : 'S';
+	if (mode & S_ISVTX)
+		buf[8] = (mode & S_IXOTH) ? 't' : 'T';
+	// 	printf("asdfasdf\n");
+	// else
+	// 	printf("NNNNNNN\n");
+	/*
+	** http://man7.org/linux/man-pages/man2/listxattr.2.html
+	*/
 	buf[9] = '\0';
+	buf[10] = '\0';
+
 }
 
 
@@ -55,9 +69,8 @@ void	block_reading(int size, t_print *pr, int i, t_list **mass)
 
 	len_symlink_name = 0;
 	lstat(pr[i].new_name, &p_stat);
-	
-	pr[i].c = get_filetype(p_stat.st_mode); 				//	1
-	get_strmode(p_stat.st_mode, pr[i].buf);					//	2
+	pr[i].c = get_filetype(p_stat.st_mode);
+	get_strmode(p_stat.st_mode, pr[i].buf);
 	pr[i].h_link = p_stat.st_nlink;
 	pr[i].pw = getpwuid(p_stat.st_uid);
 	pr[i].gr = getgrgid(p_stat.st_gid);
@@ -92,7 +105,8 @@ void	final_print(int size, t_print *pr)
 		printf("total %lld\n", total);
 	while (++i < size)
 	{
-		printf(RED"%c%s  %*d  %s %s  %*lld %s %s\n"RESET, pr[i].c, pr[i].buf, len_number(first_len), pr[i].h_link, pr[i].pw->pw_name, pr[i].gr->gr_name,
+		// printf("%d\n", len_number(first_len));
+		printf(RED"%c%s %*d  %s %s  %*lld %s %s\n"RESET, pr[i].c, pr[i].buf, len_number(first_len), pr[i].h_link, pr[i].pw->pw_name, pr[i].gr->gr_name,
 			len_number(second_len), pr[i].file_size, pr[i].str_time, pr[i].file_name);
 		ft_strdel(&pr[i].new_name);
 		ft_strdel(&pr[i].str_time);
