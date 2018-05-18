@@ -1,0 +1,2 @@
+./ft_ls -l /tmp
+-la tmp

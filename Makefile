@@ -27,7 +27,8 @@ SRC = main.c read_window_parameters.c parsing_command.c \
 		recursion.c get_filetype.c choise_print_function.c \
 		flag_1.c \
 		flag_i.c \
-		flag_l.c
+		flag_l.c \
+		get_extended_atribute.c
  
 OBJ = $(SRC:.c=.o)
 

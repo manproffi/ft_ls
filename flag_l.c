@@ -12,9 +12,11 @@
 
 #include "head_ls.h"
 
-void	get_strmode(mode_t mode, char * buf)
+void	get_strmode(mode_t mode, char * buf, char *name)
 {
-	const char chars[] = "rwxrwxrwx ";
+	const char chars[] = "rwxrwxrwx";
+	// size_t			buffler;
+
 	for (size_t i = 0; i < 9; i++) {
 		buf[i] = (mode & (1 << (8-i))) ? chars[i] : '-';
 	}
@@ -30,7 +32,12 @@ void	get_strmode(mode_t mode, char * buf)
 	/*
 	** http://man7.org/linux/man-pages/man2/listxattr.2.html
 	*/
-	buf[9] = '\0';
+	buf[9] = get_extended_atribute(name);
+	//printf("%zu\n", listxattr(name, NULL, 0, XATTR_NOFOLLOW));
+	// if (listxattr(name, NULL, 0, XATTR_NOFOLLOW) > 0)
+	// 	buf[9] = '@';
+
+	
 	buf[10] = '\0';
 
 }
@@ -70,12 +77,20 @@ void	block_reading(int size, t_print *pr, int i, t_list **mass)
 	len_symlink_name = 0;
 	lstat(pr[i].new_name, &p_stat);
 	pr[i].c = get_filetype(p_stat.st_mode);
-	get_strmode(p_stat.st_mode, pr[i].buf);
+	get_strmode(p_stat.st_mode, pr[i].buf, pr[i].new_name);
 	pr[i].h_link = p_stat.st_nlink;
+	// perror("HERE");
 	pr[i].pw = getpwuid(p_stat.st_uid);
+	// perror("******");
 	pr[i].gr = getgrgid(p_stat.st_gid);
+
+	// printf("%s\n", pr[i].pw->pw_name);
+	// printf("%s\n", pr[i].gr->gr_name);
+	//printf("%s\t", pr[i].new_name);
+	// perror("++++++");
 	pr[i].file_size = p_stat.st_size;
-	pr[i].str_time = ft_strsub(ctime(&(p_stat.st_mtimespec.tv_sec)), 4, 12);
+	// pr[i].str_time = ft_strsub(ctime(&(p_stat.st_mtimespec.tv_sec)), 4, 12);
+	pr[i].str_time = NULL;
 
 	if ((len_symlink_name = readlink(pr[i].new_name, pr[i].buffer, 256)) > 0)
 		for_readlink(mass, i, pr[i].buffer, len_symlink_name);
@@ -105,9 +120,30 @@ void	final_print(int size, t_print *pr)
 		printf("total %lld\n", total);
 	while (++i < size)
 	{
-		// printf("%d\n", len_number(first_len));
-		printf(RED"%c%s %*d  %s %s  %*lld %s %s\n"RESET, pr[i].c, pr[i].buf, len_number(first_len), pr[i].h_link, pr[i].pw->pw_name, pr[i].gr->gr_name,
-			len_number(second_len), pr[i].file_size, pr[i].str_time, pr[i].file_name);
+
+// pr[i].c
+
+
+
+// pr[i].buf
+// len_number(first_len)
+// pr[i].h_link
+
+// pr[i].pw->pw_name
+// pr[i].gr->gr_name
+
+		// printf(RED"%p  %p %p %p %p \n"RESET, pr[i].c, pr[i].buf, pr[i].h_link, pr[i].pw->pw_name, pr[i].gr->gr_name);//, len_number(second_len), pr[i].file_size);//, pr[i].str_time, pr[i].file_name);
+
+
+
+		printf(RED"%p %10s %hhd  %hhd %s  %lld %s %s\n"RESET, pr[i].c, pr[i].buf, pr[i].h_link, pr[i].pw->pw_name, pr[i].gr->gr_name, pr[i].file_size, pr[i].str_time, pr[i].file_name);
+
+
+
+
+
+		// printf(RED"%c%s %*d  %s %s  %*lld %s %s\n"RESET, pr[i].c, pr[i].buf, len_number(first_len), pr[i].h_link, pr[i].pw->pw_name, pr[i].gr->gr_name,
+		// 	len_number(second_len), pr[i].file_size, pr[i].str_time, pr[i].file_name);
 		ft_strdel(&pr[i].new_name);
 		ft_strdel(&pr[i].str_time);
 		ft_strdel(&pr[i].file_name);

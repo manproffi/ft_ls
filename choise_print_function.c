@@ -14,6 +14,7 @@
 
 void choise_print_fun(t_info *info, t_list **mass, int size, char *name)
 {
+		printf(RED"choise_print_fun\n"RESET);
 	if ((info->flags & 1) == 1)
 		flag_l(size, mass, name);
 	else if ((info->flags & 16) == 16)

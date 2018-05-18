@@ -47,10 +47,10 @@ void	print_column(t_info *info, t_list **mass, int size)
 		while (j < column * row)
 		{
 			if (j < size)
-				ft_printf("%-*s\t", max_len, mass[j]->content);
+				printf("%-*s\t", max_len, mass[j]->content);
 			j += row;
 		}
-		ft_printf("\n");
+		printf("\n");
 	}
 }
 

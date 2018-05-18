@@ -92,9 +92,19 @@ t_list	**	sort(t_list * list, t_info * info, char * name)
 		list = list->next;
 	}
 	if ((info->flags & 8) == 8)
+	{
+		// sleep(5);
 		sort_by_time_modified(len, mass_for_sort, name);
+	}
 	else
+	{
+		// sleep(5);
 		insertSort(len, mass_for_sort);
+	}
+
+	// int j = -1;
+	// while (++j < len)
+	// 	printf(RED"%s\n"RESET, mass_for_sort[j]->content);
 
 
 

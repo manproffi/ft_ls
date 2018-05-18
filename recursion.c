@@ -65,7 +65,7 @@ void	resursion(t_info *info, t_list **mass, int size, char *name)
 	{
 		new_name = ft_strjoin(name, mass[i]->content);
 	
-		if (check_if_dir(new_name))
+		if (check_if_dir(new_name) && ft_strcmp(".", mass[i]->content) && ft_strcmp("..", mass[i]->content))
 		{
 			printf("\n%s:\n", new_name);
 			list = reading(info, new_name, &flag);

@@ -42,7 +42,7 @@ typedef	struct 		s_print
 {
 	char			*new_name;
 	char			c;
-	char			buf[10];
+	char			buf[11];
 	nlink_t			h_link;
 	struct passwd 	*pw;
 	struct group  	*gr;
@@ -74,5 +74,6 @@ void	flag_i(t_list **mass, int size, char *name);
 
 void	flag_l(int size, t_list **mass, char const * name);
 int len_number(long long a);
+char	get_extended_atribute(char *filename);
 
 #endif
