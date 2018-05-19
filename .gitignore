@@ -4,3 +4,4 @@ CMakeLists.txt
 .idea
 *.o
 ft_ls
+problem.txt

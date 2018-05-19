@@ -16,6 +16,8 @@ char		get_filetype(mode_t m)
 {
 	char type;
 
+	type = ' ';
+
 	type = S_ISBLK(m) ? 'b' : type;
 	type = S_ISCHR(m) ? 'c' : type;
 	type = S_ISDIR(m) ? 'd' : type;

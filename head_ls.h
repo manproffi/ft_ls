@@ -21,6 +21,7 @@
 # include <dirent.h>
 # include "libft/libft.h"
 # include "ft_printf/printhead.h"
+# include <errno.h>
 
 # include <pwd.h>
 # include <grp.h>
@@ -42,15 +43,15 @@ typedef	struct 		s_print
 {
 	char			*new_name;
 	char			c;
-	char			buf[10];
+	char			buf[11];
 	nlink_t			h_link;
-	struct passwd 	*pw;
-	struct group  	*gr;
+	char			*pw_name;
+	char			*gr_name;
 	off_t			file_size;
 	char 			*str_time;
 	char			*file_name;
 	blkcnt_t		total;
-	char			buffer[256];
+	// char			buffer[256];
 }					t_print;
 
 
@@ -72,7 +73,10 @@ void	flag_1(t_list **mass, int size);
 void	flag_i(t_list **mass, int size, char *name);
 
 
-void	flag_l(int size, t_list **mass, char const * name);
+void	flag_l(int size, t_list **mass, char const * name, t_info *info);
 int len_number(long long a);
+char	get_extended_atribute(char *filename);
+void	block_reading(int size, t_print *pr, int i, t_list **mass);
+void	final_print_l(int size, t_print *pr, t_info *info);
 
 #endif

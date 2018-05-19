@@ -12,6 +12,21 @@
 
 #include "head_ls.h"
 
+void reverse_sort(int size, t_list **mass)
+{
+	int 	i;
+	t_list	*tmp;
+
+	i = -1;
+	while (++i < size / 2)
+	{
+		tmp = mass[i];
+		mass[i] = mass[size - 1 - i];
+		mass[size - 1 - i] = tmp;
+	}
+}
+
+
 void	insertSort(int size, t_list **mass) 
 {
 	int i;
@@ -56,7 +71,7 @@ int compere(char * a , char * b)
 	// bb.st_mtimespec.tv_sec
 }
 
-static void	sort_by_time_modified(int size, t_list **mass, const char * name) 
+static void	sort_by_time_modified(int size, t_list **mass, char * name) 
 {
 	int i;
 	int j;
@@ -75,12 +90,13 @@ static void	sort_by_time_modified(int size, t_list **mass, const char * name)
 		mass[j + 1] = tmp;
 		++i;
 	}
+	ft_strdel(&name);
 }
 
 t_list	**	sort(t_list * list, t_info * info, char * name)
 {
 	int			i;
-	int 		len;
+	int			len;
 	t_list		**mass_for_sort;
 
 	len = ft_lstsize(list);
@@ -92,17 +108,12 @@ t_list	**	sort(t_list * list, t_info * info, char * name)
 		list = list->next;
 	}
 	if ((info->flags & 8) == 8)
-		sort_by_time_modified(len, mass_for_sort, name);
+		sort_by_time_modified(len, mass_for_sort, ft_strjoin(name, "/"));
 	else
+	{
 		insertSort(len, mass_for_sort);
-
-
-
-	// printf("++++++++++TEST size %d\n", len);
-	// i = -1;
-	// while (++i < len)
-	// {
-	// 	printf("%s\n", (mass_for_sort[i])->content);
-	// }
+		if (((info->flags & 128) == 128))
+			reverse_sort(len, mass_for_sort);
+	}
 	return mass_for_sort;
 }

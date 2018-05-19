@@ -12,29 +12,23 @@
 
 #include "head_ls.h"
 
-void	pr_list(t_list * lst)
-{
-	while(lst)
-	{
-		printf("%-s\t", lst->content);
-		lst = lst->next;
-	}
-	printf("\n");
-}
-
-int 	main(int argc, char *argv[])
+int 	main2(int argc, char *argv[])
 {
 	t_info		info;
 	int			count_arg;
-	// t_list		*list = NULL;
 
 	info.flags = 0;
 	read_window_parameters(&info);
 
 	count_arg = parsing_command(argc, argv, &info);
 	work_with_parameters(count_arg, argc, argv, &info);
-
-	// del_list_list(&list);
 	// sleep(42);
+	return 0;
+}
+
+int	main(int argc, char *argv[])
+{
+	main2(argc, argv);
+	sleep(42);
 	return 0;
 }
