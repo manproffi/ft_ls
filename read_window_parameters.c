@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/13 14:06:23 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/13 14:06:26 by sprotsen         ###   ########.fr       */
+/*   Created: 2018/05/19 21:38:41 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/19 21:38:48 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head_ls.h"
 
-void	read_window_parameters(t_info * info)
+void	read_window_parameters(t_info *info)
 {
 	struct winsize	ws;
 

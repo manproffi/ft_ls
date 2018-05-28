@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   work_with_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sprotsen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/05 19:28:19 by sprotsen          #+#    #+#             */
-/*   Updated: 2016/12/05 20:33:21 by sprotsen         ###   ########.fr       */
+/*   Created: 2018/05/28 14:45:55 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/28 14:45:56 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "head_ls.h"
 
-void	ft_putstr(char const *s)
+void	work_with_file(t_list **mass, int size, t_info *info)
 {
-	if (s)
-	{
-		while (*s)
-			ft_putchar(*s++);
-	}
+	info->fl_print_total = -1;
+	choise_print_fun(info, mass, size, ft_strdup("./"));
 }

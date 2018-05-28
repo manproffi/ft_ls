@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   choise_print_function.c                            :+:      :+:    :+:   */
+/*   work_with_link.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 20:53:08 by sprotsen          #+#    #+#             */
-/*   Updated: 2018/05/15 20:53:13 by sprotsen         ###   ########.fr       */
+/*   Created: 2018/05/28 16:11:34 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/28 16:11:36 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head_ls.h"
 
-void	choise_print_fun(t_info *info, t_list **mass, int size, char *name)
+void	work_with_link(t_list **mass, int size, t_info *info)
 {
+	t_list	*list;
+	int		flag_file;
+	int		i;
+
+	flag_file = 0;
+	list = NULL;
+	i = -1;
 	if ((info->flags & 1) == 1)
-		flag_l(size, mass, name, info);
-	else if ((info->flags & 16) == 16)
-		flag_1(mass, size);
-	else if ((info->flags & 32) == 32)
-		flag_l(size, mass, name, info);
-	else if ((info->flags & 64) == 64)
-		flag_i(mass, size, name);
+	{
+		while (++i < size)
+		{
+			check_is_link(mass[i]->content, info, &flag_file);
+		}
+	}
 	else
-		print_column(info, mass, size);
-	ft_strdel(&name);
+	{
+		while (++i < size)
+		{
+			list = reading(info, mass[i]->content, &flag_file);
+			next_stage(list, info, mass[i]->content, &flag_file);
+		}
+	}
 }

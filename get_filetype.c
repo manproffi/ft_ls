@@ -12,12 +12,11 @@
 
 #include "head_ls.h"
 
-char		get_filetype(mode_t m)
+char	get_filetype(mode_t m)
 {
 	char type;
 
 	type = ' ';
-
 	type = S_ISBLK(m) ? 'b' : type;
 	type = S_ISCHR(m) ? 'c' : type;
 	type = S_ISDIR(m) ? 'd' : type;
@@ -25,6 +24,5 @@ char		get_filetype(mode_t m)
 	type = S_ISREG(m) ? '-' : type;
 	type = S_ISLNK(m) ? 'l' : type;
 	type = S_ISSOCK(m) ? 's' : type;
-
-	return type;
+	return (type);
 }

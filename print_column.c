@@ -1,14 +1,14 @@
-/* ************************************************************************* */
-/*                                                                           */
-/*                                                        :::      ::::::::  */
-/*   print_column.c                                     :+:      :+:    :+:  */
-/*                                                    +:+ +:+         +:+    */
-/*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+       */
-/*                                                +#+#+#+#+#+   +#+          */
-/*   Created: 2018/05/13 19:49:35 by sprotsen          #+#    #+#            */
-/*   Updated: 2018/05/13 19:49:51 by sprotsen         ###   ########.fr      */
-/*                                                                           */
-/* ************************************************************************* */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_column.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/19 21:36:22 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/19 21:36:32 by sprotsen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "head_ls.h"
 
@@ -20,7 +20,7 @@ int		max_length(t_list **mass, int size)
 	i = -1;
 	len = 0;
 	while (++i < size)
-		if (mass[i]->content_size > len)
+		if ((int)mass[i]->content_size > len)
 			len = mass[i]->content_size;
 	return (len);
 }
@@ -53,4 +53,3 @@ void	print_column(t_info *info, t_list **mass, int size)
 		ft_printf("\n");
 	}
 }
-

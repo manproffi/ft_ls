@@ -12,23 +12,15 @@
 
 #include "head_ls.h"
 
-int 	main2(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	t_info		info;
 	int			count_arg;
 
 	info.flags = 0;
 	read_window_parameters(&info);
-
 	count_arg = parsing_command(argc, argv, &info);
 	work_with_parameters(count_arg, argc, argv, &info);
-	// sleep(42);
-	return 0;
-}
-
-int	main(int argc, char *argv[])
-{
-	main2(argc, argv);
-	sleep(42);
-	return 0;
+	system("leaks -q ft_ls");
+	return (0);
 }

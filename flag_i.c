@@ -12,33 +12,31 @@
 
 #include "head_ls.h"
 
-int len_number(long long a)
+int		len_number(long long a)
 {
 	int		res;
 
 	res = 0;
-
 	while (1)
 	{
 		if (a / 10 == 0)
-			return res + 1;
+			return (res + 1);
 		else
 		{
 			a = a / 10;
 			res++;
 		}
 	}
-	return 0;
+	return (0);
 }
-
 
 void	flag_i(t_list **mass, int size, char *name)
 {
-	struct	stat p_stat;
-	char	*str_name;
-	int		i;
-	long long		index[size];
-	int		max;
+	struct stat			p_stat;
+	char				*str_name;
+	int					i;
+	unsigned long long	index[size];
+	int					max;
 
 	i = -1;
 	max = 0;
@@ -55,5 +53,5 @@ void	flag_i(t_list **mass, int size, char *name)
 	}
 	i = -1;
 	while (++i < size)
-		printf("%*llu %s\n", max, index[i], mass[i]->content);
+		ft_printf("%*d %s\n", max, index[i], mass[i]->content);
 }

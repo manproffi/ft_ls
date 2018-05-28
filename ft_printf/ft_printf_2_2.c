@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_2_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sprotsen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sprotsen <sprotsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/05 19:28:19 by sprotsen          #+#    #+#             */
-/*   Updated: 2016/12/05 20:33:21 by sprotsen         ###   ########.fr       */
+/*   Created: 2018/05/19 20:57:05 by sprotsen          #+#    #+#             */
+/*   Updated: 2018/05/19 20:57:07 by sprotsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printhead.h"
 
-void	ft_putstr(char const *s)
+void	for_fl0(int *flag, char *str, size_t *i)
 {
-	if (s)
-	{
-		while (*s)
-			ft_putchar(*s++);
-	}
+	str[*i] == '*' ? flag[5] = -996 : 0;
+	*i += 1;
 }

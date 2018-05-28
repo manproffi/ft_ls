@@ -28,11 +28,17 @@ SRC = main.c read_window_parameters.c parsing_command.c \
 		flag_1.c \
 		flag_i.c \
 		flag_l.c \
-		get_extended_atribute.c
+		get_extended_atribute.c \
+		print_part_l_g.c \
+		check_time.c \
+		sort_input_param.c \
+		work_with_file.c \
+		work_with_link.c \
+		work_with_other.c
  
 OBJ = $(SRC:.c=.o)
 
-FLAGR = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror
 
 all:	$(NAME)
 

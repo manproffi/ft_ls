@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #ifndef PRINTHEAD_H
-#define PRINTHEAD_H
+# define PRINTHEAD_H
 
-#include <stdarg.h>
-#include <wchar.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <unistd.h>
-#include <stdio.h>
-//#include <stat.h>
+# include <stdarg.h>
+# include <wchar.h>
+# include <string.h>
+# include <stdlib.h>
+# include <ctype.h>
+# include <unistd.h>
+# include <stdio.h>
 
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
@@ -43,14 +42,14 @@ void	pr_space_null(int pr, size_t *res, char c);
 void	pr_row(int len, size_t *res, char *str);
 void	for_octal(void *point, size_t *res, int *fl);
 void	clear_flag(int *flag);
-void	for_string(void *point, size_t *res, int *fl);
+int		for_string(void *point, size_t *res, int *fl);
 void	for_symbol(void *point, size_t *res, int *flag);
 void	for_decimal(void *point, size_t *res, int *fl);
 void	for_u_decimal(void *point, size_t *res, int *fl);
 void	pr_hex(uintmax_t a, int i, int *symb, char *row);
 void	for_address(void *point, size_t *res, int *fl);
 void	for_wchar(wchar_t *str, size_t *res, int *fl);
-void	pr_null(size_t *res, int *fl);
+int		pr_null(size_t *res, int *fl);
 void	pr_simple_symbol(char *str, size_t *result, size_t *i);
 void	find_all_flags(int *flag, char *str, size_t *i);
 void	fun_hh_ll(char *str, int *flag, size_t *a, size_t k);
@@ -72,5 +71,6 @@ char	*ft_strnew_printf(size_t size);
 void	ft_strdel_printf(char **as);
 void	ft_strclr_printf(char *s);
 int		ft_printf(const char *format, ...);
+void	for_fl0(int *flag, char *str, size_t *i);
 
 #endif

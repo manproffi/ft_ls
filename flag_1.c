@@ -19,6 +19,6 @@ void	flag_1(t_list **mass, int size)
 	i = -1;
 	while (++i < size)
 	{
-		printf("%s\n", mass[i]->content);
+		ft_printf("%s\n", mass[i]->content);
 	}
 }

@@ -12,21 +12,20 @@
 
 #include "head_ls.h"
 
-int		check_if_dir(char * name)
+int		check_if_dir(char *name)
 {
-	 struct stat  p_stat;
+	struct stat		p_stat;
 
 	if (lstat(name, &p_stat) == 0 && S_ISDIR(p_stat.st_mode))
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
-
 
 void	resursion(t_info *info, t_list **mass, int size, char *name)
 {
 	int		i;
 	int		flag;
-	t_list 	*list;
+	t_list	*list;
 	char	*new_name;
 
 	i = -1;
@@ -34,15 +33,14 @@ void	resursion(t_info *info, t_list **mass, int size, char *name)
 	while (++i < size)
 	{
 		new_name = ft_strjoin(name, mass[i]->content);
-	
-		if (check_if_dir(new_name) && ft_strcmp(".", mass[i]->content) && ft_strcmp("..", mass[i]->content))
+		if (check_if_dir(new_name) && ft_strcmp(".", mass[i]->content) &&
+			ft_strcmp("..", mass[i]->content))
 		{
-			printf("\n%s:\n", new_name);
+			ft_printf("\n%s:\n", new_name);
 			list = reading(info, new_name, &flag);
-			next_stage(list, info, new_name);
+			next_stage(list, info, new_name, 0);
 			ft_strdel(&new_name);
 		}
-		
 		ft_strdel(&new_name);
 	}
 	ft_strdel(&name);

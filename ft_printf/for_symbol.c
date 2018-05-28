@@ -21,7 +21,7 @@ void	for_symbol(void *point, size_t *res, int *flag)
 	flag[3] == 1 ? flag[4] = 0 : 0;
 	flag[6] > 0 ? flag[6] = 0 : 0;
 	if (flag[3] == 1)
-		ft_putchar_printf((int) point);
+		ft_putchar_printf((int)point);
 	if (flag[6] == -1)
 		k = flag[5] - 1;
 	else if (flag[5])
@@ -35,5 +35,5 @@ void	for_symbol(void *point, size_t *res, int *flag)
 			flag[4] == 1 ? ft_putchar_printf('0') : ft_putchar_printf(' ');
 		}
 	if (flag[3] == 0)
-		ft_putchar_printf((int) point);
+		ft_putchar_printf((int)point);
 }

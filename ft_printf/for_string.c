@@ -22,16 +22,14 @@ void	pr_string(size_t len, size_t *res, char *str, int *fl)
 		return ;
 	if (fl[6] > 0 && fl[6] < (int)len)
 		len = fl[6];
-	while (i < len)
-	{
-		ft_putchar_printf(str[i++]);
-		*res += 1;
-	}
+	write(1, str, len);
+	*res += len;
 }
 
-void	pr_null(size_t *res, int *fl)
+int		pr_null(size_t *res, int *fl)
 {
 	for_string("(null)", res, fl);
+	return (0);
 }
 
 void	pr_part_string(void *point, int *fl, size_t *res, size_t len)
@@ -43,36 +41,21 @@ void	pr_part_string(void *point, int *fl, size_t *res, size_t len)
 	pr_string(len, res, (char*)point, fl);
 }
 
-void	for_string(void *point, size_t *res, int *fl)
+int		for_string(void *point, size_t *res, int *fl)
 {
 	size_t		len;
 	int			pr;
 
-	// printf("%d\n", fl[5]);
-	// printf("adsfasdfas\n");
-	// if (fl[5] == -996)
-	// 	fl[5] = ft_atoi_printf((char*)point);
-	// printf("%d\n", fl[5]);
-
-	// printf("%d\n", (int)point);
 	if (fl[5] == -996)
 		fl[5] = (int)point;
-
-	// printf("%s\n", (char*)point);
-
-	// sleep(43);
-	// printf("adsfasdfas\n");
-	point != NULL ? len = ft_strlen_printf((char *) point) : 0;
+	point != NULL ? len = ft_strlen_printf((char *)point) : 0;
 	if (fl[6] == -1)
 	{
 		fl[4] == 1 ? PSN(fl[5], res, '0') : PSN(fl[5], res, ' ');
-		return ;
+		return (0);
 	}
 	if ((char*)point == NULL)
-	{
-		pr_null(res, fl);
-		return ;
-	}
+		return (pr_null(res, fl));
 	if (fl[5] > 0 && fl[3] == 0)
 		pr_part_string(point, fl, res, len);
 	else if (fl[5] > 0 && fl[3] == 1)
@@ -80,8 +63,9 @@ void	for_string(void *point, size_t *res, int *fl)
 		pr_string(len, res, (char*)point, fl);
 		pr = fl[5] - (((fl[6] < (int)len) && fl[6] != 0) ? fl[6] : (int)len);
 		pr_space_null(pr, res, ' ');
-		return ;
+		return (0);
 	}
 	else
 		pr_string(len, res, (char*)point, fl);
+	return (0);
 }

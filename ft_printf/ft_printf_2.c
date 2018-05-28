@@ -66,28 +66,12 @@ void	for_fl1(int *flag, char *str, size_t *i)
 	*i += 1;
 }
 
-void	for_fl0(int *flag, char *str, size_t *i)
-{
-	// printf("asdfads\n");
-	str[*i] == '*' ? flag[5] = -996 : 0;
-	// str[*i] = '*';
-	*i += 1;
-}
-
-
-
 void	find_all_flags(int *flag, char *str, size_t *i)
 {
 	if (FL1(str[*i]))
 		(FL1(str[*i]) > 0) ? for_fl1(flag, str, i) : 0;
 	if (FL0(str[*i]))
 		(FL0(str[*i]) > 0) ? for_fl0(flag, str, i) : 0;
-		// (FL2(str[*i]) > 0) ? for_fl2(flag, str, i) : 0;
-		// (FL3(str[*i]) > 0) ? for_fl3(flag, str, i) : 0;
-	// printf("flag\n");
-
-	
-	// printf("flag\n");
 }
 
 void	pr_simple_symbol(char *str, size_t *result, size_t *i)

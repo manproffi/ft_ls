@@ -29,7 +29,8 @@ SRC = stand_fun.c \
 		for_wchar.c \
 		ft_putwchar.c \
 		pr_decimal.c \
-		pr_hex.c
+		pr_hex.c \
+		ft_printf_2_2.c
 
 OBJ = $(SRC:.c=.o)
 
