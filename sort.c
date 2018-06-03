@@ -110,6 +110,8 @@ t_list	**sort(t_list *list, t_info *info, char *name)
 	else
 		insert_sort(len, mass_for_sort);
 	if (((info->flags & 128) == 128))
+	{
 		reverse_sort(len, mass_for_sort);
+	}
 	return (mass_for_sort);
 }

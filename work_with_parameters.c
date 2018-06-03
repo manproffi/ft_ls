@@ -19,7 +19,7 @@ void	next_stage(t_list *list, t_info *info, char *name, int *flag)
 
 	if (name[ft_strlen(name) - 1] == '/')
 		str_name = ft_strdup(name);
-	else if (flag)
+	else if (*flag)
 	{
 		*flag = 0;
 		str_name = ft_strdup(name);
@@ -96,6 +96,7 @@ void	work_with_parameters(int c_arg, int ac, char **av, t_info *info)
 	{
 		list = reading(info, ".", &flag_file);
 		next_stage(list, info, ".", &flag_file);
+		return ;
 	}
 	marker_for_address = ac - c_arg;
 	if (marker_for_address > 1)
@@ -103,6 +104,8 @@ void	work_with_parameters(int c_arg, int ac, char **av, t_info *info)
 	else
 	{
 		list = reading(info, av[c_arg], &flag_file);
+		if (!list)
+			return ;
 		next_stage(list, info, av[c_arg], &flag_file);
 	}
 }

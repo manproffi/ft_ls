@@ -20,6 +20,7 @@ void	work_with_other(t_list **mass, int size, t_info *info)
 
 	i = -1;
 	flag_file = 0;
+	info->fl_print_total = 1;
 	while (++i < size)
 	{
 		list = reading(info, mass[i]->content, &flag_file);

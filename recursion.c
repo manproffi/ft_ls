@@ -38,7 +38,12 @@ void	resursion(t_info *info, t_list **mass, int size, char *name)
 		{
 			ft_printf("\n%s:\n", new_name);
 			list = reading(info, new_name, &flag);
-			next_stage(list, info, new_name, 0);
+			if (!list)
+			{
+				ft_strdel(&new_name);
+				continue ;
+			}
+			next_stage(list, info, new_name, &flag);
 			ft_strdel(&new_name);
 		}
 		ft_strdel(&new_name);

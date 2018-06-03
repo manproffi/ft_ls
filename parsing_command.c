@@ -33,7 +33,11 @@ void	list_flag(t_info *info, int i, int j, char *argv[])
 	info->flags = (argv[i][j] == 'R') ? (info->flags | 2) : (info->flags);
 	info->flags = (argv[i][j] == 'a') ? (info->flags | 4) : (info->flags);
 	info->flags = (argv[i][j] == 't') ? (info->flags | 8) : (info->flags);
-	info->flags = (argv[i][j] == '1') ? (info->flags | 16) : (info->flags);
+	if (argv[i][j] == '1')
+	{
+		info->flags = (info->flags | 16);
+		info->flags &= ~(1UL << 0);
+	}
 	info->flags = (argv[i][j] == 'g') ? (info->flags | 32) : (info->flags);
 	info->flags = (argv[i][j] == 'i') ? (info->flags | 64) : (info->flags);
 	info->flags = (argv[i][j] == 'r') ? (info->flags | 128) : (info->flags);

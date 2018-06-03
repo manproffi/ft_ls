@@ -21,6 +21,5 @@ int		main(int argc, char *argv[])
 	read_window_parameters(&info);
 	count_arg = parsing_command(argc, argv, &info);
 	work_with_parameters(count_arg, argc, argv, &info);
-	system("leaks -q ft_ls");
 	return (0);
 }

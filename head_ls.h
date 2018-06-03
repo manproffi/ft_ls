@@ -57,5 +57,7 @@ void	work_with_file(t_list **mass, int size, t_info *info);
 void	work_with_link(t_list **mass, int size, t_info *info);
 int		check_is_link(char const *name, t_info *info, int *flag);
 void	work_with_other(t_list **mass, int size, t_info *info);
+int		del_liaks(t_print **pr, t_list **mass);
+int		check_is_link_flag_g(char const *name, t_info *info, int *flag);
 
 #endif

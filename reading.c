@@ -12,7 +12,7 @@
 
 #include "head_ls.h"
 
-void	del_liaks(t_print **pr, t_list **mass)
+int		del_liaks(t_print **pr, t_list **mass)
 {
 	ft_strdel(&(*pr)->new_name);
 	ft_strdel(&(*pr)->pw_name);
@@ -24,6 +24,7 @@ void	del_liaks(t_print **pr, t_list **mass)
 	free(mass);
 	if (*pr)
 		free(*pr);
+	return (0);
 }
 
 int		check_is_link(char const *name, t_info *info, int *flag)
@@ -37,7 +38,9 @@ int		check_is_link(char const *name, t_info *info, int *flag)
 	lstat(name, &p_stat);
 	if (name[ft_strlen(name) - 1] == '/')
 		return (1);
-	if (S_ISLNK(p_stat.st_mode) && (info->flags & 1) == 1)
+	if (S_ISLNK(p_stat.st_mode) && ((info->flags & 32) == 32))
+		return (check_is_link_flag_g(name, info, flag));
+	if (S_ISLNK(p_stat.st_mode) && ((info->flags & 1) == 1))
 	{
 		*flag = 1;
 		mass = (t_list**)malloc(sizeof(t_list*) * 1);
@@ -48,8 +51,7 @@ int		check_is_link(char const *name, t_info *info, int *flag)
 		ft_printf("%c%s %d  %s %s  %d %s %s\n", pr[i].c, pr[i].buf,
 				pr[i].h_link, pr[i].pw_name, pr[i].gr_name, pr[i].file_size,
 				pr[i].str_time, pr[i].file_name);
-		del_liaks(&pr, mass);
-		return (0);
+		return (del_liaks(&pr, mass));
 	}
 	return (1);
 }
